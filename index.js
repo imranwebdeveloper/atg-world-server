@@ -35,7 +35,7 @@ app.post("/user/post/like/:id", verifyHeader, verifyUser, likes);
 app.post("/user/post/comment/:id", verifyHeader, verifyUser, comment);
 app.get("/user/post/comment/:id", verifyHeader, verifyUser, getPostComments);
 
-app.listen(process.env.PORT || 5001, () => {
+app.listen(process.env.PORT, () => {
   connectBD();
   console.log("listening on port");
 });

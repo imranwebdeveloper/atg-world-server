@@ -3,7 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 const { connectBD } = require("./config/connectBD");
 const verifyHeader = require("./middleware/verifyHeader");
-const verifyUser = require("./middleware/verifyUser");
+const verifyUser = require("./middleware/VerifyUser");
 const logInController = require("./controller/login");
 const resetController = require("./controller/Reset");
 const likes = require("./controller/likes");
@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) =>
-  res.status(200).send({ status: true, message: "Success" })
+  res.status(200).send({ status: true, message: "Hello World" })
 );
 
 app.post("/user/register", registerUser);
@@ -37,4 +37,5 @@ app.get("/user/post/comment/:id", verifyHeader, verifyUser, getPostComments);
 
 app.listen(process.env.PORT || 5001, () => {
   connectBD();
+  console.log("listening on port " + 5001);
 });

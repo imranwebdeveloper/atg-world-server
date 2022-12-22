@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
-const connectBD = async () => {
-  await mongoose.connect(process.env.MONGO_SERVER, () => {
-    console.log("DB Connected");
+const connectBD = () => {
+  mongoose.set("strictQuery", true);
+  mongoose.connect(process.env.MONGO_SERVER, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
   });
+
+  console.log("Mongoose Connected");
 };
 
 module.exports = { connectBD };

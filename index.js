@@ -3,7 +3,6 @@ require("dotenv").config();
 const cors = require("cors");
 const { connectBD } = require("./config/connectBD");
 const verifyHeader = require("./middleware/verifyHeader");
-const verifyUser = require("./middleware/VerifyUser");
 const logInController = require("./controller/login");
 const resetController = require("./controller/Reset");
 const likes = require("./controller/likes");
@@ -23,6 +22,17 @@ app.use(express.json());
 app.get("/", (req, res) =>
   res.status(200).send({ status: true, message: "Hello World" })
 );
+const verifyUser = async (req, res, next) => {
+  try {
+    const { user } = req.headers;
+    const IsUser = await UserModel.find({ _id: user });
+    if (IsUser) {
+      next();
+    }
+  } catch (error) {
+    res.status(401).send({ status: false, message: "Invalid Credential" });
+  }
+};
 
 app.post("/user/register", registerUser);
 app.post("/user/login", logInController);

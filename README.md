@@ -1,13 +1,11 @@
-# # This is Backend API project
-
-Base URL link : [Create React App](https://github.com/facebook/create-react-app).
-
-## Build On
+# # Social Media REST API Project build on
 
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
+
+Base URL link : [https://atg-server.onrender.com](https://atg-server.onrender.com/)
 
 ## API endpoints
 
